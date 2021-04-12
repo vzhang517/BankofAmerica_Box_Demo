@@ -4,9 +4,7 @@ class InputField extends React.Component {
     render() {
         return (
             <div>
-                <form>
-                    <input type="text"/>
-                </form>
+                <input type="text"/>
             </div>
 
         )
