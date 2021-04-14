@@ -1,0 +1,12 @@
+{
+  "boxAppSettings": {
+    "clientID": "jp8jwehyhtrglrdpn4mcai7zm2x4vkxq",
+    "clientSecret": "0X3HnAlNdnexVr3ViGtjjTTtSbJVbIRc",
+    "appAuth": {
+      "publicKeyID": "m9s2v2ia",
+      "privateKey": "-----BEGIN ENCRYPTED PRIVATE KEY-----\nMIIFDjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIJaXcqng6mfQCAggA\nMBQGCCqGSIb3DQMHBAgb5BycUIfXoASCBMi4aCLPHLU/e5RDsD1q/59yguS62gTd\nu7HJAHHhDhKN+FxJcLmmQAJfzrsXhJ4Rb25+Nqkos5RUXCknG30THOVFv6RCsUqK\ndGcDu4H0/sZediBK0QC+X48LCmeTgDhIxBLfXDG0hw76MjzYZth7KO2uKIuVGoqg\nmKSEEI6eiCwXNPM6TjWpJ/h2kgAIEOIoHcWNXUrT2VMChyCpZxpW7AXTfcXZKPon\nRJ/o6b3/O4N1wPLIwr04FNR3FtSBuhuRWXS1lT8uBccnbEAhMJUe80ZYK2eupOVq\n9SnFR5d1TUhAcSnazR1ghN5I0UPhNCYoZ1/9ZzqWUmu0ks0HitOMo6+jj1bKe1VS\nciMFgPkBm7dVmLw8A8Xe9Zfr+NcfyTbStaIlmsbaERaiXoqFxsKJ5m4jZj86f6Wz\ncZx1o/G/XdcXwl7VohfI/ARw5LomWyZQCn3Tsra9GcmzxWwxubJ0WAuVnN2RPCLK\nnfzRecgQvfBMn9Th64bF7gQhaghN00zcC/u4Zb6KYvYdE1sC9Y0jDG/N+K6Njx/S\ntHikg+/rCUUsQ+KyzUDcXxtiG0u3hnUNs6zgFrKNykDgOq/PDyKqBfWJXZ+hsBRR\nrcx/UNhGsY/NC09UjLMHf2Gda/UvXuPmHj2Zex4tmrk6F0SmgVFcCyG9/P+sTfsT\nh3dGFQu3TdzkpVaUXoe/WYjlYWx5jRW8sN3h3WUVAj2xrqBABsbK6c+w6pVvfJml\nwQMQRN3947lP97/wRqfvbR7EyxSWFCOEQ5JFG4jPLgGcizHupREapZLGhh5no9x/\n5aMSxA6FEu12jMv1GzDlQLIx2hi2HkOHj3P2geo+aSqpIuQKOkN1LJWD3J+TmoyG\naxa8fpA2wT5vL8q6gLhbH8g9orx5xiKNww/49dFMv7CGw6Y0E7YgFmhjHf8RHzI2\nkeuU14U+ag1jByByYDSS6pLnDP5VNPSZFFwk0Q3OMQulVMIqLxEOScQ3VgNK16bP\nnmjb6rvihxruYugJK8i0Lcy74mEANOacerUKhY/cS3qMUvOVg7ZANVP9GvKSwxUw\nnp04ac92Rm3VzDVSlwEDc4eCsIWZh0DyECjBfidrwEQWLgzIvmAf94g9IrXdYJ4f\neBUQQp7h33i4cto8LyARliEpJ38oSeSJnUWWfm1KHwARHdvuVpUL8/LhdvsjYUvV\nYu8XAjwh6wxyWbK1MyUenuxOYRwHMU7mAcJUmj9XBsIZJxux2ejKCiN9XYwGzZws\nU4FxEWcF6Fhhglc6xqyNoLYgV7dPaj/3RDmXemoVMDgnenzidNsx5AK8B/emyhPe\nB7xXXvc+5ytLKT0I/NkKyI63dh2xItmM8cLKk8xT7vSLdsHJwc055O9YCjAEw0KG\nGtQCjTxaVqevpLiTOhaFEghCcB4tex+/rqKOcidp/ooWx22ie9RGuAklxnY0Dtuj\nienrk0ryU5R597UUgv07jAtmSOMJWz0d0cV1NzccUAJVoW4HWJveL172UF62lo8y\nXJMcrVtw3ZbLGabqbV0kbxB4EYx8AXkVhgb1u3pHrA0OulHHLaSL9bQH2WHA4zGk\nHLRjdzELlQUD15dkBTwt5lRKv93MNjfpWVHmvsJZERhzRXmIahacpHBJX8pxEgHQ\ntyg=\n-----END ENCRYPTED PRIVATE KEY-----\n",
+      "passphrase": "0a9234068211d5b2bdff121700a98b28"
+    }
+  },
+  "enterpriseID": "809310311"
+}

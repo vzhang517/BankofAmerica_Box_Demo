@@ -9,20 +9,23 @@ import UploadSuccess from "./Pages/UploadSuccess";
 
 class App extends React.Component {
 
-  onSubmit = async() => {
+  onSubmit = async(fullname, selectedFile) => {
         const data = new FormData()
-        data.append('name', this.state.fullname)
-        data.append('file', this.state.selectedFile)
-        axios.post("http://localhost:8000/upload", data, { 
-          // receive two    parameter endpoint url ,form data
+        data.append('name', fullname)
+        data.append('file', selectedFile)
+        console.log(data);
+        axios({
+          method: "post",
+          url: "http://localhost:8000/upload",
+          data: data,
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then(res => { 
+          if (res.status===200)
+          {
+            this.props.history.push("/success");
+          }
       })
-
-      .then(res => { 
-        if (res.status===200)
-        {
-          this.props.history.push("/success");
-        }
-     })
     };
 
     
