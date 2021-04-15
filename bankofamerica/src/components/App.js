@@ -5,7 +5,7 @@ import axios from 'axios';
 import UploadPage from "./Pages/UploadPage";
 import UploadSuccess from "./Pages/UploadSuccess";
 
-import "./_App.css";
+import "./_App.scss";
 
 class App extends React.Component {
 
@@ -20,6 +20,7 @@ class App extends React.Component {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then(res => { 
+          console.log(res)
           if (res.status===200)
           {
             this.props.history.push("/success");

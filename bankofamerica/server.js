@@ -57,12 +57,13 @@ app.post('/upload',function(req, res) {
               client.files.delete(fileId, { etag: matchetag })
               .then(() => {
                 client.files.uploadFile(folderId, req.files.file.name, stream)
+                res.send({ hello: 'world' });
               })
               .catch(err => {
                 if (err.statusCode === 412) {
                   // Precondition failed — the file was modified before the deletion was processed
                   // Read the file again to ensure it is safe to delete and then retry
-                  
+
 
                 }
               });
@@ -70,22 +71,27 @@ app.post('/upload',function(req, res) {
 
             else{
               client.files.uploadFile(folderId, req.files.file.name, stream)
+              res.send({ hello: 'world' });
             }
 
           })
 
 
       }
+    
+    // If no folder exists for account number, create a new folder for it and upload the file into the folder 
     else
     {
       client.folders.create('0', accountNum)
       .then(folder => {
         var stream = fs.createReadStream(req.files.file.path);
 				client.files.uploadFile(folder.id, req.files.file.name, stream)
+        return res.status(200)
 
       });
     }
 
+    return res.status(200)
 
   });
 
