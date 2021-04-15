@@ -1,38 +1,96 @@
 const BoxSDK = require('box-node-sdk');
 const jsonConfig = require('./config.json');
 const sdk = BoxSDK.getPreconfiguredInstance(jsonConfig);
+const fs = require('fs');
 
 const express = require('express');
 const app = express();
-const fs = require('fs');
+const formidableMiddleware = require('express-formidable');
 const cors = require('cors');
 app.use(cors())
-const bodyParser = require('body-parser');
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-})); 
-
+app.use(formidableMiddleware());
 
 var client = sdk.getAppAuthClient('enterprise');
   
+  
+
 
 app.post('/upload',function(req, res) {
- console.log(req.body);
-  var reqName = String(req.name);
-  client.folders.create('0', reqName)
-  .then(folder => {
-    var stream = fs.createReadStream(req.files.file.path);
-    client.files.uploadFile(folder.id, req.files.file.name, stream)
+
+  var accountNum = req.fields.accountNum;
+  var filename = req.files.file.name;
+  var stream = fs.createReadStream(req.files.file.path);
+
+  // check to see if folder already exists for account number
+  client.search.query(
+    accountNum,
+    {
+      type: 'folder',
+      content_types: 'name',
+      offset: 0,
+      limit: 1,
+      fields: 'id'
+    })
+    .then(results => {
+      if (results["total_count"] > 0) {
+
+        var folderId = results["entries"][0]["id"];
+
+        // see if same loan file already exists in account folder
+        client.search.query(
+          filename,
+          {
+            type: 'file',
+            content_types: 'name',
+            ancestor_folder_ids: folderId,
+            offset: 0,
+            limit: 1,
+            fields: 'id, etag',
+          })
+          .then(results =>{
+            // if file exists, delete it and upload the new version of the file
+            if (results["total_count"] > 0) {
+
+              var fileId = results["entries"][0]["id"];
+              var matchetag = results["entries"][0]["etag"];
+
+              client.files.delete(fileId, { etag: matchetag })
+              .then(() => {
+                client.files.uploadFile(folderId, req.files.file.name, stream)
+              })
+              .catch(err => {
+                if (err.statusCode === 412) {
+                  // Precondition failed — the file was modified before the deletion was processed
+                  // Read the file again to ensure it is safe to delete and then retry
+                  
+
+                }
+              });
+            }
+
+            else{
+              client.files.uploadFile(folderId, req.files.file.name, stream)
+            }
+
+          })
+
+
+      }
+    else
+    {
+      client.folders.create('0', accountNum)
+      .then(folder => {
+        var stream = fs.createReadStream(req.files.file.path);
+				client.files.uploadFile(folder.id, req.files.file.name, stream)
+
+      });
+    }
+
 
   });
 
 
-      return res.status(200)
-
-
 });
-
 
 app.listen(8000, function() {
 

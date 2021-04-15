@@ -5,15 +5,14 @@ import axios from 'axios';
 import UploadPage from "./Pages/UploadPage";
 import UploadSuccess from "./Pages/UploadSuccess";
 
-
+import "./_App.css";
 
 class App extends React.Component {
 
-  onSubmit = async(fullname, selectedFile) => {
+  onSubmit = async(accountNo, selectedFile) => {
         const data = new FormData()
-        data.append('name', fullname)
+        data.append('accountNum', accountNo)
         data.append('file', selectedFile)
-        console.log(data);
         axios({
           method: "post",
           url: "http://localhost:8000/upload",
@@ -36,7 +35,7 @@ class App extends React.Component {
       <div className="container">
         <BrowserRouter>
           <div>
-            <img></img>
+            <img src="./img/Header.JPG" className="header" ></img>
             <Route
               path="/"
               exact

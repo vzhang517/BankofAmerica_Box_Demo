@@ -2,12 +2,12 @@ import React from 'react';
 import axios from 'axios';
 
 class UploadFileForm extends React.Component {
-    state = { fullname: "", selectedFile: null};
+    state = { accountNo: "", selectedFile: null};
 
     // Sets state to whatever is being typed in the input
     onInputChange = event => {
-      this.setState({ fullname: event.target.value });
-      console.log(this.state.fullname);
+      this.setState({ accountNo: event.target.value });
+      console.log(this.state.accountNo);
     };
   
     // Preventing submit from hitting enter key
@@ -24,37 +24,18 @@ class UploadFileForm extends React.Component {
     };
 
     //runs onClickHandler function in App.js, passes the name and file from the state in this component to run the ajax call in App.js
-   // onClickHandler = () => {
-      //this.props.onClick(this.state.fullname, this.state.selectedFile);
-    //};
-
-    onClickHandler = async(fullname, selectedFile) => {
-      const data = new FormData()
-      data.append('name', this.state.fullname)
-      data.append('file', this.state.selectedFile)
-      console.log(data);
-      axios({
-        method: "post",
-        url: "http://localhost:8000/upload",
-        data: data,
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then(res => { 
-        if (res.status===200)
-        {
-          this.props.history.push("/success");
-        }
-    })
-  };
+    onClickHandler = () => {
+      this.props.onClick(this.state.accountNo, this.state.selectedFile);
+    };
   
     render() {
         return (
             <form onSubmit={this.onFormSubmit}>
           <div>
-            <label>Full Name</label>
+            <label>Account Number</label>
             <input
               type="text"
-              value={this.state.fullname}
+              value={this.state.accountNo}
               onChange={this.onInputChange}
             />
           </div>
