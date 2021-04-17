@@ -1,2 +1,6 @@
 @import "../../styles/_mixins.scss";
 
+.uploadpage_container{
+    @include margins;
+    font-family: Arial;
+}

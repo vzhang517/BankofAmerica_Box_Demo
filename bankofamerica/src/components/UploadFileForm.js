@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+import { withRouter } from "react-router-dom";
 
 import "./_UploadFileForm.scss";
 
@@ -25,8 +27,22 @@ class UploadFileForm extends React.Component {
     };
 
     //runs onClickHandler function in App.js, passes the name and file from the state in this component to run the ajax call in App.js
-    onClickHandler = () => {
-      this.props.onClick(this.state.accountNo, this.state.selectedFile);
+    onClickHandler = async() => {
+      const data = new FormData()
+      data.append('accountNum', this.state.accountNo)
+      data.append('file', this.state.selectedFile)
+      axios({
+        method: "post",
+        url: "http://localhost:8000/upload",
+        data: data,
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then(res => { 
+        if (res.status===200)
+        {
+          this.props.history.push("/success");
+        }
+      })
     };
   
     render() {
@@ -58,4 +74,4 @@ class UploadFileForm extends React.Component {
 
 }
 
-export default UploadFileForm;
+export default withRouter(UploadFileForm);

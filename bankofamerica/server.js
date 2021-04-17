@@ -34,6 +34,7 @@ app.post('/upload',function(req, res) {
     .then(results => {
       if (results["total_count"] > 0) {
 
+        var stream = fs.createReadStream(req.files.file.path);
         var folderId = results["entries"][0]["id"];
 
         // see if same loan file already exists in account folder
@@ -57,7 +58,8 @@ app.post('/upload',function(req, res) {
               client.files.delete(fileId, { etag: matchetag })
               .then(() => {
                 client.files.uploadFile(folderId, req.files.file.name, stream)
-                res.send({ hello: 'world' });
+                console.log(res);
+                res.send({ status: "success" });
               })
               .catch(err => {
                 if (err.statusCode === 412) {
@@ -71,7 +73,8 @@ app.post('/upload',function(req, res) {
 
             else{
               client.files.uploadFile(folderId, req.files.file.name, stream)
-              res.send({ hello: 'world' });
+              console.log(res);
+              res.send({ status: "success" });
             }
 
           })
@@ -84,14 +87,11 @@ app.post('/upload',function(req, res) {
     {
       client.folders.create('0', accountNum)
       .then(folder => {
-        var stream = fs.createReadStream(req.files.file.path);
 				client.files.uploadFile(folder.id, req.files.file.name, stream)
-        return res.status(200)
+        res.send({ status: "success" });
 
       });
     }
-
-    return res.status(200)
 
   });
 

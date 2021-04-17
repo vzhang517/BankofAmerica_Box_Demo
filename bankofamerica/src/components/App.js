@@ -1,35 +1,12 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
-import axios from 'axios';
 
 import UploadPage from "./Pages/UploadPage";
 import UploadSuccess from "./Pages/UploadSuccess";
 
 import "./_App.scss";
 
-class App extends React.Component {
-
-  onSubmit = async(accountNo, selectedFile) => {
-        const data = new FormData()
-        data.append('accountNum', accountNo)
-        data.append('file', selectedFile)
-        axios({
-          method: "post",
-          url: "http://localhost:8000/upload",
-          data: data,
-          headers: { "Content-Type": "multipart/form-data" },
-        })
-        .then(res => { 
-          console.log(res)
-          if (res.status===200)
-          {
-            this.props.history.push("/success");
-          }
-      })
-    };
-
-    
-  
+class App extends React.Component {    
   
   render() {
     return (
