@@ -6,7 +6,14 @@ import "./_UploadFileForm.scss";
 
 
 class UploadFileForm extends React.Component {
-    state = { accountNo: "", selectedFile: null};
+  constructor(props){
+    super(props);
+
+    this.state = { accountNo: "", selectedFile: null, selectedFilename:"No File Selected"};
+
+  }
+
+
 
     // Sets state to whatever is being typed in the input
     onInputChange = event => {
@@ -22,7 +29,7 @@ class UploadFileForm extends React.Component {
     onChangeHandler=event=>{
       this.setState({
         selectedFile: event.target.files[0],
-        loaded: 0,
+        selectedFilename: event.target.files[0].name
       })
     };
 
@@ -47,26 +54,26 @@ class UploadFileForm extends React.Component {
   
     render() {
         return (
-          <form onSubmit={this.onFormSubmit}>
+          <form onSubmit={this.onFormSubmit} className="uploadfileform_form">
             <div className="uploadfileform_inputs">
-              <div>
-                <label className="uploadfileform_label">Account Number*</label>
+              <div className="uploadfileform_input">
+                <label>Account Number*</label>
                 <input
                   type="text"
                   value={this.state.accountNo}
                   onChange={this.onInputChange}
                 />
               </div>
-              <div>
-              <label className="uploadfileform_label">Upload File*</label>
-                <label className="uploadfileform_customuploadbutton">
-                  <input type="file" onChange={this.onChangeHandler}/>
-                   File
-                </label>
+              <div className="uploadfileform_filecontainer">
+                <input type="file" onChange={this.onChangeHandler} id="realbutton" hidden/>
+                <label htmlFor="realbutton" className="uploadfileform_choosefilelabel">Choose File</label>
+                <div className="uploadfileform_filechosen">{this.state.selectedFilename}</div>
+                
               </div>
             </div>
             <button type="button" className="uploadfileform_submitbutton" onClick={this.onClickHandler}>Submit</button> 
           </form>
+          
 
             
         )
