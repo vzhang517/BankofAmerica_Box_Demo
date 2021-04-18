@@ -7,6 +7,15 @@ import UploadSuccess from "./Pages/UploadSuccess";
 import "./_App.scss";
 
 class App extends React.Component {    
+  state = { firstName: "" , lastName: ""};
+
+  //used to set first and last name on of this parent component to the states in UploadFileForm.js
+  passName = (firstName, lastName) =>{
+    this.setState({
+      firstName: firstName,
+      lastName: lastName
+    });
+  }
   
   render() {
     return (
@@ -19,7 +28,7 @@ class App extends React.Component {
               exact
               render={() => (
                 <UploadPage
-                  onClick={this.onSubmit}
+                  passName={this.passName}
 
                 />
               )}
@@ -28,7 +37,9 @@ class App extends React.Component {
               path="/success"
               exact
               render={() => (
-                <UploadSuccess/>
+                <UploadSuccess
+                  firstName={this.state.firstName}
+                />
               )}
             />
 

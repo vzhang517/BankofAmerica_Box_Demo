@@ -1,6 +1,17 @@
 @import "../../styles/_mixins.scss";
 
-.uploadpage_container{
+.uploadsuccess_container{
     @include margins;
     font-family: Arial;
+    
+}
+
+.uploadsuccess_titletext{
+    color: #DC1431;
+    font-size: 24px;
+
+}
+
+.uploadsuccess_subtext{
+    font-size: 16px;
 }

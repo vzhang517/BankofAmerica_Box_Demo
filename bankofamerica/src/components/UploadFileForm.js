@@ -6,18 +6,13 @@ import "./_UploadFileForm.scss";
 
 
 class UploadFileForm extends React.Component {
-  constructor(props){
-    super(props);
-
-    this.state = { accountNo: "", selectedFile: null, selectedFilename:"No File Selected"};
-
-  }
-
-
+  state = { firstName: "" , lastName: "", accountNo: "", selectedFile: null, selectedFilename:"No File Selected"};
 
     // Sets state to whatever is being typed in the input
     onInputChange = event => {
-      this.setState({ accountNo: event.target.value });
+      let nam = event.target.name;
+      let val = event.target.value;
+      this.setState({[nam]: val});
     };
   
     // Preventing submit from hitting enter key
@@ -33,8 +28,10 @@ class UploadFileForm extends React.Component {
       })
     };
 
-    //runs onClickHandler function in App.js, passes the name and file from the state in this component to run the ajax call in App.js
+    // Does call to server.js with the account No and file info from the state in this component 
     onClickHandler = async() => {
+      //set the first and last name state in App.js to the first and last name state of this component
+      this.props.passName(this.state.firstName, this.state.lastName);
       const data = new FormData()
       data.append('accountNum', this.state.accountNo)
       data.append('file', this.state.selectedFile)
@@ -56,26 +53,42 @@ class UploadFileForm extends React.Component {
         return (
           <form onSubmit={this.onFormSubmit} className="uploadfileform_form">
             <div className="uploadfileform_inputs">
+            <div className="uploadfileform_input">
+                <label>First Name*</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  onChange={this.onInputChange}
+                />
+              </div>
+              <div className="uploadfileform_input">
+                <label>Last Name*</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  onChange={this.onInputChange}
+                />
+              </div>
               <div className="uploadfileform_input">
                 <label>Account Number*</label>
                 <input
                   type="text"
-                  value={this.state.accountNo}
+                  name="accountNo"
                   onChange={this.onInputChange}
                 />
               </div>
-              <div className="uploadfileform_filecontainer">
-                <input type="file" onChange={this.onChangeHandler} id="realbutton" hidden/>
-                <label htmlFor="realbutton" className="uploadfileform_choosefilelabel">Choose File</label>
-                <div className="uploadfileform_filechosen">{this.state.selectedFilename}</div>
-                
+              <div>
+                <label className="uploadfileform_uploadlabel">Loan Application*</label>
+                <div className="uploadfileform_filecontainer">
+                  <input type="file" onChange={this.onChangeHandler} id="realbutton" hidden/>
+                  <label htmlFor="realbutton" className="uploadfileform_choosefilelabel">Choose File</label>
+                  <div className="uploadfileform_filechosen">{this.state.selectedFilename}</div>
+                </div>
               </div>
             </div>
             <button type="button" className="uploadfileform_submitbutton" onClick={this.onClickHandler}>Submit</button> 
           </form>
-          
-
-            
+    
         )
     }
 

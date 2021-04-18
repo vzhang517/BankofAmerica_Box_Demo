@@ -2,21 +2,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 350px;
-    height: 140px;
+    width: 315px;
+    height: 310px;
     padding-top: 2%;
     padding-bottom: 3%;
 }
 
 .uploadfileform_input{
     label{
-        display: inline-block;
+        display: block;
         font-size: 14px;
         font-weight: normal;
     }
 
     input{
         height: 40px;
+        width: 300px;
         font-size: 18px;
         border: 1px solid #d1c9c0;
         display: inline-block;
@@ -37,7 +38,6 @@ input[type="file"] {
 
 .uploadfileform_submitbutton{
     display: block;
-    margin:auto;
     font-size: 24px;
     line-height: 25px;
     padding: 10px 25px;
@@ -50,16 +50,22 @@ input[type="file"] {
     outline: none;
 }
 
+.uploadfileform_uploadlabel{
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+}
+
 .uploadfileform_choosefilelabel {
     font-size: 14px;
     background-color: #0073cf;
     border: none;
     color: white;
-    padding: 15px 20px;
+    padding: 15px 21px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-  }
+}
   
   .uploadfileform_filechosen{
     font-size: 14px;
@@ -67,12 +73,12 @@ input[type="file"] {
     font-family: sans-serif; 
     overflow: hidden;
     display: inline-block;
-  }
+}
 
   .uploadfileform_filecontainer{
     border: 1px solid #d1c9c0;
-    box-sizing: border-box;
-    display: inline-block;
     overflow: hidden;
     white-space: nowrap;
-  }
+    width: 305px;
+    
+}
