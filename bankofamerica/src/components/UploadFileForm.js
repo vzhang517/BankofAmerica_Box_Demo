@@ -78,7 +78,7 @@ class UploadFileForm extends React.Component {
                 />
               </div>
               <div>
-                <label className="uploadfileform_uploadlabel">Loan Application*</label>
+                <label className="uploadfileform_uploadlabel">Loan Application Files*<br></br>(ex: application form, ID scans)</label>
                 <div className="uploadfileform_filecontainer">
                   <input type="file" onChange={this.onChangeHandler} id="realbutton" hidden/>
                   <label htmlFor="realbutton" className="uploadfileform_choosefilelabel">Choose File</label>

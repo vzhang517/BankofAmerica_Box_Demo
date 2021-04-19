@@ -11,9 +11,6 @@ app.use(cors())
 app.use(formidableMiddleware());
 
 var client = sdk.getAppAuthClient('enterprise');
-  
-  
-
 
 app.post('/upload',function(req, res) {
 
@@ -34,7 +31,6 @@ app.post('/upload',function(req, res) {
     .then(results => {
       if (results["total_count"] > 0) {
 
-        var stream = fs.createReadStream(req.files.file.path);
         var folderId = results["entries"][0]["id"];
 
         // see if same loan file already exists in account folder
@@ -57,8 +53,7 @@ app.post('/upload',function(req, res) {
 
               client.files.delete(fileId, { etag: matchetag })
               .then(() => {
-                client.files.uploadFile(folderId, req.files.file.name, stream)
-                console.log(res);
+                client.files.uploadFile(folderId, filename, stream)
                 res.send({ status: "success" });
               })
               .catch(err => {
@@ -72,8 +67,7 @@ app.post('/upload',function(req, res) {
             }
 
             else{
-              client.files.uploadFile(folderId, req.files.file.name, stream)
-              console.log(res);
+              client.files.uploadFile(folderId, filename, stream)
               res.send({ status: "success" });
             }
 
@@ -87,7 +81,7 @@ app.post('/upload',function(req, res) {
     {
       client.folders.create('0', accountNum)
       .then(folder => {
-				client.files.uploadFile(folder.id, req.files.file.name, stream)
+				client.files.uploadFile(folder.id, filename, stream)
         res.send({ status: "success" });
 
       });
